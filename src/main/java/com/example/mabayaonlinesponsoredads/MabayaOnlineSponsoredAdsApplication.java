@@ -11,13 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MabayaOnlineSponsoredAdsApplication implements CommandLineRunner {
 	@Autowired
 	private ProductRepository productRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(MabayaOnlineSponsoredAdsApplication.class, args);
 	}
+
 	@Override
 	public void run(String... args) throws Exception {
-		Product p1 = new Product("title1", "Home",10.1, 123);
-		productRepository.save(p1);
+		Product product1 = new Product("title1","Home",12.3,123);
+		productRepository.save(product1);
+		Product product2 = new Product("title3","Electro",124.3,15623);
+		productRepository.save(product2);
+
 	}
 }
