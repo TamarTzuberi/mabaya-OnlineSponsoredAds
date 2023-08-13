@@ -1,8 +1,11 @@
 package com.example.mabayaonlinesponsoredads.Entities;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,10 +15,20 @@ public class Campaign {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long campaignId;
     String name;
-    LocalDateTime startDate;
+    Timestamp startDate;
     double bid;
     @OneToMany(mappedBy = "campaign")
-    private Set<ProductsInCampaign> productsInCampaignSet;
+    private Set<ProductsInCampaign> productsInCampaignSet = new HashSet<>();
+
+    public Campaign(String name, Timestamp startDate, double bid) {
+        this.name = name;
+        this.startDate = startDate;
+        this.bid = bid;
+    }
+
+    public Campaign() {
+
+    }
 
     public void setCampaignId(Long campaignId) {
         this.campaignId = campaignId;
@@ -33,11 +46,11 @@ public class Campaign {
         this.name = name;
     }
 
-    public LocalDateTime getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
