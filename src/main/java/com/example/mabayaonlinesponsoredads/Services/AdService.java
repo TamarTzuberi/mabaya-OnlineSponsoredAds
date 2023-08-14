@@ -4,6 +4,7 @@ import com.example.mabayaonlinesponsoredads.DTOs.ProductDTO;
 import com.example.mabayaonlinesponsoredads.Entities.Campaign;
 import com.example.mabayaonlinesponsoredads.Entities.Product;
 import com.example.mabayaonlinesponsoredads.Entities.ProductsInCampaign;
+import com.example.mabayaonlinesponsoredads.Mappers.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,14 @@ public class AdService {
     private final ProductService productService;
     private final ProductsInCampaignService productsInCampaignService;
     private final CampaignService campaignService;
+    private final ProductMapper productMapper;
 
     @Autowired
-    public AdService(ProductService productService,ProductsInCampaignService productsInCampaignService,CampaignService campaignService) {
+    public AdService(ProductService productService,ProductsInCampaignService productsInCampaignService,CampaignService campaignService, ProductMapper productMapper) {
         this.productService = productService;
         this.productsInCampaignService = productsInCampaignService;
         this.campaignService = campaignService;
+        this.productMapper = productMapper;
     }
 
     public ProductDTO getPromotedProduct(String category){
@@ -41,12 +44,6 @@ public class AdService {
     }
 
 
-    //Todo: update this function (with all the required fields) and add new mapper class
-    private ProductDTO ConvertToDto(Product promotedProduct) {
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setTitle(promotedProduct.getTitle());
-        return productDTO;
-    }
 
     private ProductDTO findPromotedProduct(List<ProductsInCampaign> productsInCampaigns, List<Campaign> validCampaigns){
         Campaign campaignWithMaxBid = campaignService.findCampaignWithMaxBid(validCampaigns);
@@ -56,7 +53,7 @@ public class AdService {
                 .findFirst()
                 .orElse(null);
         Product promotedProduct = productService.getProductByProductId(promotedProductId);
-        return ConvertToDto(promotedProduct);
+        return productMapper.productToProductDTO(promotedProduct);
     }
 
 
