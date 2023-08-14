@@ -27,7 +27,10 @@ public class AdController {
     @GetMapping
     public ResponseEntity<ProductDTO> getPromotedProduct(
             @RequestParam String category) {
-        return ResponseEntity.ok(adService.getPromotedProduct(category));
+        ProductDTO productDTO = adService.getPromotedProduct(category);
+        if (productDTO != null)
+            return ResponseEntity.ok(productDTO);
+        return ResponseEntity.noContent().build();
         }
 
 
