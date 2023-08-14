@@ -1,15 +1,10 @@
 package com.example.mabayaonlinesponsoredads.Controllers;
 import org.springframework.http.HttpStatus;
-
 import com.example.mabayaonlinesponsoredads.DTOs.ProductDTO;
-
 import com.example.mabayaonlinesponsoredads.Services.AdService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/promotedProduct")
@@ -33,12 +28,6 @@ public class AdController {
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProductDTO());
         }
-
         }
-
 }
-
-
-
-
 

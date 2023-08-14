@@ -6,21 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @SpringBootApplication
 public class MabayaOnlineSponsoredAdsApplication {
-//	@Autowired
-//	private ProductRepository productRepository;
+	@Autowired
+	private ProductRepository productRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(MabayaOnlineSponsoredAdsApplication.class, args);
 	}
-//
-//	@Override
-//	public void run(String... args) throws Exception {
-//		Product product1 = new Product("title1","Home",12.3,123);
-//		productRepository.save(product1);
-//		Product product2 = new Product("title3","Electro",124.3,15623);
-//		productRepository.save(product2);
-//
-//	}
+
+	@Component
+	public class ProductDBInitializer implements CommandLineRunner {
+		private final String[] categories = {"Electronics", "Beauty", "Home",};
+		private final Random random = new Random();
+
+		@Override
+		public void run(String... args) throws Exception {
+			for (int i = 0; i < 10; i++) {
+				Product product = new Product();
+				product.setTitle("Product " + (i + 1));
+				product.setCategory(categories[random.nextInt(categories.length)]);
+				product.setPrice(10.0 + random.nextDouble() * 100.0);
+				product.setpSerialNum(100 + i); // making a unique serial number
+				productRepository.save(product);
+			}
+		}
+	}
 }
