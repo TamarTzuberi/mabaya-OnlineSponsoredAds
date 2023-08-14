@@ -22,4 +22,7 @@ public class ProductsInCampaignService {
         return productsInCampaignRepository.findByProductIn(productList);
     }
 
+    public List<ProductsInCampaign> getAllProductsInCampaign() {
+        return productsInCampaignRepository.findAll();
+    }
 }

@@ -28,11 +28,16 @@ public class AdService {
         List<Campaign> validCampaigns = campaignService.findValidCampaigns(productsInCampaigns);
         if (!validCampaigns.isEmpty()) {
             // In case that there are valid campaigns that contains product that related to the required category : find the campaign with the max bid
-            return findPromotedProductFromCategory(productsInCampaigns, validCampaigns);
+            return findPromotedProduct(productsInCampaigns, validCampaigns);
         }
-        //ToDO : find all campaigns , check who valid and return max bid
+        //In case that there are no valid campaigns containing products related to the required category : find all valid campaigns and determine which one has the highest bid
+        productsInCampaigns = productsInCampaignService.getAllProductsInCampaign();
+        validCampaigns = campaignService.findValidCampaigns(productsInCampaigns);
+        if (!validCampaigns.isEmpty()) {
+            // In case that there are valid campaigns that contains products in the DB
+            return findPromotedProduct(productsInCampaigns, validCampaigns);
+        }
         return null;
-
     }
 
 
@@ -43,7 +48,7 @@ public class AdService {
         return productDTO;
     }
 
-    private ProductDTO findPromotedProductFromCategory(List<ProductsInCampaign> productsInCampaigns, List<Campaign> validCampaigns){
+    private ProductDTO findPromotedProduct(List<ProductsInCampaign> productsInCampaigns, List<Campaign> validCampaigns){
         Campaign campaignWithMaxBid = campaignService.findCampaignWithMaxBid(validCampaigns);
         long promotedProductId = productsInCampaigns.stream()
                 .filter(productsInCampaign -> productsInCampaign.getCampaign().getCampaignId().equals(campaignWithMaxBid.getCampaignId()))
