@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "product", indexes = {@Index(name = "idx_product_category", columnList = "category")})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
