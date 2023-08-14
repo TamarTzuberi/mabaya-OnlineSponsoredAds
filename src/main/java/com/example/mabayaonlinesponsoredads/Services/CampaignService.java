@@ -42,13 +42,7 @@ public class CampaignService {
         if (productList != null){
             // adding relationship between the new campaign and the relevant products
             for (Product product : productList){
-                ProductsInCampaign productsInCampaign = new ProductsInCampaign();
-                productsInCampaign.setCampaign(newCampaign);
-                productsInCampaign.setProduct(product);
-                productsInCampaignRepository.save(productsInCampaign);
-                Set<ProductsInCampaign> newProductsInCampaignSet = newCampaign.getProductsInCampaignSet();
-                newProductsInCampaignSet.add(productsInCampaign);
-                newCampaign.setProductsInCampaignSet(newProductsInCampaignSet);
+                createRelationProductToCampaign (newCampaign, product);
             }
         }
         return campaignMapper.campaignToCampaignDTO(newCampaign);
@@ -70,5 +64,15 @@ public class CampaignService {
 
     public Campaign findCampaignWithMaxBid(List<Campaign> validCampaigns){
         return Collections.max(validCampaigns, Comparator.comparingDouble(Campaign::getBid));
+    }
+
+    private void createRelationProductToCampaign (Campaign newCampaign,Product product){
+        ProductsInCampaign productsInCampaign = new ProductsInCampaign();
+        productsInCampaign.setCampaign(newCampaign);
+        productsInCampaign.setProduct(product);
+        productsInCampaignRepository.save(productsInCampaign);
+        Set<ProductsInCampaign> newProductsInCampaignSet = newCampaign.getProductsInCampaignSet();
+        newProductsInCampaignSet.add(productsInCampaign);
+        newCampaign.setProductsInCampaignSet(newProductsInCampaignSet);
     }
 }
