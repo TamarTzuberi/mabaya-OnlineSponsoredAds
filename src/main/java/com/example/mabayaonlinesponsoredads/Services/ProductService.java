@@ -19,5 +19,7 @@ public class ProductService {
     }
 
 
-
+    public Product getProductByProductId(long promotedProductId) {
+        return productRepository.findByProductId(promotedProductId);
+    }
 }

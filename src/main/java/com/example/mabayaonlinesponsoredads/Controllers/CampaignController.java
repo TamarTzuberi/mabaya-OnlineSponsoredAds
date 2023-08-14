@@ -31,6 +31,7 @@ public class CampaignController {
         return ResponseEntity.ok(createdCampaignDTO);
     }
 
+    // Todo : add mapper class
     private CampaignDTO convertCampaignToDTO(Campaign campaign) {
         CampaignDTO campaignDTO = new CampaignDTO();
         campaignDTO.setName(campaign.getName());
