@@ -35,7 +35,7 @@ public class AdService {
             return findPromotedProductFromProductsInCampaign(productsInCampaigns, validCampaigns);
         }
         //In case that there are no valid campaigns containing products related to the required category : find all valid campaigns and determine which one has the highest bid
-        productsInCampaigns = productsInCampaignService.getAllProductsInCampaign();
+        productsInCampaigns = productsInCampaignService.getAllCampaignsWithProducts();
         validCampaigns = campaignService.findValidCampaigns(productsInCampaigns);
         if (!validCampaigns.isEmpty()) {
             // In case that there are valid campaigns that contains products in the DB

@@ -31,10 +31,6 @@ public class Campaign {
 
     }
 
-    public void setCampaignId(Long campaignId) {
-        this.campaignId = campaignId;
-    }
-
     public Long getCampaignId() {
         return campaignId;
     }

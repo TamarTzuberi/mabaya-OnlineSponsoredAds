@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProductsInCampaignRepository extends JpaRepository<ProductsInCampaign,Long> {
-    public List<ProductsInCampaign> findByProductIn(List<Product> productList);
+public interface ProductsInCampaignRepository extends JpaRepository<ProductsInCampaign, Long> {
+    List<ProductsInCampaign> findByProductIn(List<Product> productList);
+    List<ProductsInCampaign> findDistinctByCampaign();
 }
