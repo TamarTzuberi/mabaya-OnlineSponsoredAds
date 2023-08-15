@@ -17,6 +17,7 @@ public class AdService {
     private final CampaignService campaignService;
     private final ProductMapper productMapper;
 
+
     @Autowired
     public AdService(ProductService productService,ProductsInCampaignService productsInCampaignService,CampaignService campaignService, ProductMapper productMapper) {
         this.productService = productService;
@@ -31,21 +32,20 @@ public class AdService {
         List<Campaign> validCampaigns = campaignService.findValidCampaigns(productsInCampaigns);
         if (!validCampaigns.isEmpty()) {
             // In case that there are valid campaigns that contains product that related to the required category : find the campaign with the max bid
-            return findPromotedProduct(productsInCampaigns, validCampaigns);
+            return findPromotedProductFromProductsInCampaign(productsInCampaigns, validCampaigns);
         }
         //In case that there are no valid campaigns containing products related to the required category : find all valid campaigns and determine which one has the highest bid
         productsInCampaigns = productsInCampaignService.getAllProductsInCampaign();
         validCampaigns = campaignService.findValidCampaigns(productsInCampaigns);
         if (!validCampaigns.isEmpty()) {
             // In case that there are valid campaigns that contains products in the DB
-            return findPromotedProduct(productsInCampaigns, validCampaigns);
+            return findPromotedProductFromProductsInCampaign(productsInCampaigns, validCampaigns);
         }
         return null;
     }
 
 
-
-    private ProductDTO findPromotedProduct(List<ProductsInCampaign> productsInCampaigns, List<Campaign> validCampaigns){
+    private ProductDTO findPromotedProductFromProductsInCampaign(List<ProductsInCampaign> productsInCampaigns, List<Campaign> validCampaigns){
         Campaign campaignWithMaxBid = campaignService.findCampaignWithMaxBid(validCampaigns);
         long promotedProductId = productsInCampaigns.stream()
                 .filter(productsInCampaign -> productsInCampaign.getCampaign().getCampaignId().equals(campaignWithMaxBid.getCampaignId()))

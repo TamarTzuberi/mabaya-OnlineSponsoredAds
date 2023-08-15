@@ -3,6 +3,8 @@ package com.example.mabayaonlinesponsoredads.Controllers;
 import com.example.mabayaonlinesponsoredads.DTOs.CampaignDTO;
 import com.example.mabayaonlinesponsoredads.Entities.Campaign;
 import com.example.mabayaonlinesponsoredads.Services.CampaignService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class CampaignController {
     @Autowired
     private CampaignService campaignService;
+    private static final Logger logger = LoggerFactory.getLogger(AdController.class);
+
 
     @PostMapping
     public ResponseEntity<CampaignDTO> createCampaign(
@@ -28,6 +32,7 @@ public class CampaignController {
             return ResponseEntity.ok(newCampaignDTO);
         }
         catch (Exception e) {
+            logger.error("An error occurred " + e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new CampaignDTO());}
     }
 
