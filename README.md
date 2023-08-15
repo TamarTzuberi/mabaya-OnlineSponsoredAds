@@ -19,12 +19,12 @@ To get started, make sure you have Docker installed on your system.
         You can utilize Postman, or any other HTTP client tool of your choice, to:
         1. Retrieve Ad (GET): http://localhost:8080/promotedProduct?category="Home"
         2. Create Campaign (POST): http://localhost:8080/newCampaign
-                           Body Example:  {
-                                              "name": "HomeCampaign",
-                                              "startDate": "2023-08-13 00:59:59",
-                                              "productIds": [3,5,7,9],
-                                              "bid" : 5000.66
-                                          }
+           Body Example:  {
+                            "name": "HomeCampaign",
+                            "startDate": "2023-08-13 00:59:59",
+                            "productIds": [3,5,7,9],
+                            "bid" : 5000.66
+                          }
 
 # Features 
 - Database Initialization: Upon application startup, the Spring project automatically populates the database with 10 products.
