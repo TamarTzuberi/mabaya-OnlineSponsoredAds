@@ -2,6 +2,8 @@ package com.example.mabayaonlinesponsoredads.Entities;
 
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -10,7 +12,6 @@ import java.util.Set;
 
 @Entity
 public class Campaign {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long campaignId;

@@ -1,6 +1,8 @@
 package com.example.mabayaonlinesponsoredads.Entities;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
 
 @Entity
 public class ProductsInCampaign {

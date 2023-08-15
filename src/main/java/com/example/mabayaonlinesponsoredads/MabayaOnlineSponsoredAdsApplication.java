@@ -20,7 +20,7 @@ public class MabayaOnlineSponsoredAdsApplication {
 
 	@Component
 	public class ProductDBInitializer implements CommandLineRunner {
-		private final String[] categories = {"Electronics", "Beauty", "Home",};
+		private final String[] categories = {"Electronics", "Beauty", "Home"};
 		private final Random random = new Random();
 
 		@Override
