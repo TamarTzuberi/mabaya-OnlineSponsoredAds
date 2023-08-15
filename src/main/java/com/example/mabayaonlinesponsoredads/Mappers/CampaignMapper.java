@@ -3,6 +3,9 @@ import com.example.mabayaonlinesponsoredads.DTOs.CampaignDTO;
 import com.example.mabayaonlinesponsoredads.Entities.Campaign;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
 @Mapper(componentModel = "spring")

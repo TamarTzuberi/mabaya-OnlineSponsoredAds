@@ -1,5 +1,4 @@
 package com.example.mabayaonlinesponsoredads.Controllers;
-
 import org.springframework.http.HttpStatus;
 import com.example.mabayaonlinesponsoredads.DTOs.ProductDTO;
 import com.example.mabayaonlinesponsoredads.Services.AdService;
@@ -8,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.SequenceInputStream;
 
 @RestController
@@ -16,7 +14,6 @@ import java.io.SequenceInputStream;
 public class AdController {
     private final AdService adService;
     private static final Logger logger = LoggerFactory.getLogger(AdController.class);
-
     @Autowired
     public AdController(AdService adService) {
         this.adService = adService;
@@ -26,17 +23,18 @@ public class AdController {
     public ResponseEntity<ProductDTO> getPromotedProduct(
             @RequestParam String category) {
 
-        try {
+        try{
             ProductDTO productDTO = adService.getPromotedProduct(category);
-            if (productDTO != null) {
+            if (productDTO != null){
                 return ResponseEntity.ok(productDTO);
             }
             logger.info("No promoted product found");
             return ResponseEntity.noContent().build();
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             logger.error("An error occurred " + e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ProductDTO());
         }
-    }
+        }
 }
 

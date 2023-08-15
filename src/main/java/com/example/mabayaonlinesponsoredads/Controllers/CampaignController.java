@@ -1,5 +1,7 @@
 package com.example.mabayaonlinesponsoredads.Controllers;
+
 import com.example.mabayaonlinesponsoredads.DTOs.CampaignDTO;
+import com.example.mabayaonlinesponsoredads.Entities.Campaign;
 import com.example.mabayaonlinesponsoredads.Services.CampaignService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/newCampaign")
 public class CampaignController {
@@ -18,16 +22,18 @@ public class CampaignController {
     private CampaignService campaignService;
     private static final Logger logger = LoggerFactory.getLogger(AdController.class);
 
+
     @PostMapping
     public ResponseEntity<CampaignDTO> createCampaign(
             @RequestBody CampaignDTO campaignDTO) {
-        try {
+        try{
             CampaignDTO newCampaignDTO = campaignService.createCampaign(campaignDTO);
+            newCampaignDTO.setProductIds(campaignDTO.getProductIds());
             return ResponseEntity.ok(newCampaignDTO);
-        } catch (Exception e) {
-            logger.error("An error occurred " + e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new CampaignDTO());
         }
+        catch (Exception e) {
+            logger.error("An error occurred " + e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new CampaignDTO());}
     }
 
 }

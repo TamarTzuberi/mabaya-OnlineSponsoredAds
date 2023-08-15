@@ -70,4 +70,11 @@ public class Product {
         return productId;
     }
 
+    public Set<ProductsInCampaign> getProductsInCampaignSet() {
+        return productsInCampaignSet;
+    }
+
+    public void setProductsInCampaignSet(Set<ProductsInCampaign> productsInCampaignSet) {
+        this.productsInCampaignSet = productsInCampaignSet;
+    }
 }

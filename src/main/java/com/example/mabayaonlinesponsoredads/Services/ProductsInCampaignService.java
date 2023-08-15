@@ -2,6 +2,7 @@ package com.example.mabayaonlinesponsoredads.Services;
 
 import com.example.mabayaonlinesponsoredads.Entities.Product;
 import com.example.mabayaonlinesponsoredads.Entities.ProductsInCampaign;
+import com.example.mabayaonlinesponsoredads.Repositories.ProductRepository;
 import com.example.mabayaonlinesponsoredads.Repositories.ProductsInCampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ProductsInCampaignService {
         return productsInCampaignRepository.findByProductIn(productList);
     }
 
-    public List<ProductsInCampaign> getAllCampaignsWithProducts() {
-        return productsInCampaignRepository.findDistinctByCampaign();
+    public List<ProductsInCampaign> getAllProductsInCampaign() {
+        return productsInCampaignRepository.findAll();
     }
 }

@@ -2,7 +2,9 @@ package com.example.mabayaonlinesponsoredads.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+import java.util.Locale;
 
 public class CampaignDTO {
     @JsonProperty("name")

@@ -20,6 +20,14 @@ public class ProductsInCampaign {
     public ProductsInCampaign() {
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public Product getProduct() {
         return product;
     }
