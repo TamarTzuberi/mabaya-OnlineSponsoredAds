@@ -45,7 +45,9 @@ public class CampaignService {
                 createRelationProductToCampaign (newCampaign, product);
             }
         }
-        return campaignMapper.campaignToCampaignDTO(newCampaign);
+        CampaignDTO newCampaignDTO =campaignMapper.campaignToCampaignDTO(newCampaign);
+        newCampaignDTO.setProductIds(campaignDTO.getProductIds());
+        return newCampaignDTO;
     }
 
     public List<Campaign> findValidCampaigns(List<ProductsInCampaign> productsInCampaignList) {

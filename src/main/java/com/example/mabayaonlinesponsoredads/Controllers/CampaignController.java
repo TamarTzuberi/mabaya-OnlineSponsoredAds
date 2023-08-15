@@ -28,7 +28,6 @@ public class CampaignController {
             @RequestBody CampaignDTO campaignDTO) {
         try{
             CampaignDTO newCampaignDTO = campaignService.createCampaign(campaignDTO);
-            newCampaignDTO.setProductIds(campaignDTO.getProductIds());
             return ResponseEntity.ok(newCampaignDTO);
         }
         catch (Exception e) {
