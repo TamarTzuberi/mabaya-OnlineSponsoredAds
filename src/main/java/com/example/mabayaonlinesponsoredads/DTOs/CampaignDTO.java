@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class CampaignDTO {
+    @JsonProperty("campaignId")
+    private String campaignId;
     @JsonProperty("name")
     private String name;
     @JsonProperty("startDate")

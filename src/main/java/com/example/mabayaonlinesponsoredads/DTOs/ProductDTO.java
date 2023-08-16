@@ -3,6 +3,8 @@ package com.example.mabayaonlinesponsoredads.DTOs;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductDTO {
+    @JsonProperty("productId")
+    private String productId;
     @JsonProperty("title")
     private String title;
     @JsonProperty("category")
