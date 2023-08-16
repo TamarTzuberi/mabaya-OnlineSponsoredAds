@@ -13,11 +13,11 @@ To get started, make sure you have Docker installed on your system.
        Parameters: name , startDate , List of product identifiers to promote , Bid (price for a click on an advertised product)
        Response: JSON representation of the campaign.
     2. Ad Retrieval API: Retrieve promoted ads based on category:
-       Parameters: Category ("Electronics", "Beauty", "Home")
+       Parameters: Category (Electronics, Beauty, Home)
        Response: JSON format, highest bid's product from active campaigns.
    - HTTP client tool
         You can utilize Postman, or any other HTTP client tool of your choice, to:
-        1. Retrieve Ad (GET): http://localhost:8080/promotedProduct?category="Home"
+        1. Retrieve Ad (GET): http://localhost:8080/promotedProduct?category=Home
         2. Create Campaign (POST): http://localhost:8080/newCampaign
            Body Example:  {
                             "name": "HomeCampaign",
