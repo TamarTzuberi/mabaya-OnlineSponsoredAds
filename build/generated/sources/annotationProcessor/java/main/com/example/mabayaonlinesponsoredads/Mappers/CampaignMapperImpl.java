@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-16T09:25:42+0300",
+    date = "2023-08-16T09:34:46+0300",
     comments = "version: 1.4.0.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.2.1.jar, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -39,6 +39,9 @@ public class CampaignMapperImpl implements CampaignMapper {
         CampaignDTO campaignDTO = new CampaignDTO();
 
         campaignDTO.setStartDate( xmlGregorianCalendarToString( dateToXmlGregorianCalendar( campaign.getStartDate() ), null ) );
+        if ( campaign.getCampaignId() != null ) {
+            campaignDTO.setCampaignId( String.valueOf( campaign.getCampaignId() ) );
+        }
         campaignDTO.setName( campaign.getName() );
         campaignDTO.setBid( campaign.getBid() );
 
@@ -53,6 +56,9 @@ public class CampaignMapperImpl implements CampaignMapper {
 
         Campaign campaign = new Campaign();
 
+        if ( campaignDTO.getCampaignId() != null ) {
+            campaign.setCampaignId( Long.parseLong( campaignDTO.getCampaignId() ) );
+        }
         campaign.setName( campaignDTO.getName() );
         campaign.setStartDate( stringToTimestamp( campaignDTO.getStartDate() ) );
         campaign.setBid( campaignDTO.getBid() );

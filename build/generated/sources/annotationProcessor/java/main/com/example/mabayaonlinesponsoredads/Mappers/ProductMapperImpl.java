@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-16T09:25:42+0300",
+    date = "2023-08-16T09:34:46+0300",
     comments = "version: 1.4.0.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.2.1.jar, environment: Java 19.0.1 (Oracle Corporation)"
 )
 @Component
@@ -21,6 +21,9 @@ public class ProductMapperImpl implements ProductMapper {
 
         ProductDTO productDTO = new ProductDTO();
 
+        if ( product.getProductId() != null ) {
+            productDTO.setProductId( String.valueOf( product.getProductId() ) );
+        }
         productDTO.setTitle( product.getTitle() );
         productDTO.setCategory( product.getCategory() );
         productDTO.setPrice( product.getPrice() );
@@ -41,6 +44,9 @@ public class ProductMapperImpl implements ProductMapper {
         product.setCategory( productDTO.getCategory() );
         product.setPrice( productDTO.getPrice() );
         product.setpSerialNum( productDTO.getpSerialNum() );
+        if ( productDTO.getProductId() != null ) {
+            product.setProductId( Long.parseLong( productDTO.getProductId() ) );
+        }
 
         return product;
     }

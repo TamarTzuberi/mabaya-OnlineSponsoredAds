@@ -14,6 +14,14 @@ public class ProductDTO {
     @JsonProperty("pSerialNum")
     private int pSerialNum;
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
     public String getTitle() {
         return title;
     }

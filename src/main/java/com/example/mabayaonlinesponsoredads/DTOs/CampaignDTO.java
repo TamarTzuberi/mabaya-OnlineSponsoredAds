@@ -14,6 +14,15 @@ public class CampaignDTO {
     @JsonProperty("startDate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String startDate;
+
+    public String getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(String campaignId) {
+        this.campaignId = campaignId;
+    }
+
     @JsonProperty("productIds")
     private List<Long> productIds;
     @JsonProperty("bid")
